@@ -1,0 +1,15 @@
+{
+    "name": "Xmark",
+    "description": "Customizable folders for bookmarks in X(Twitter).",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+        "js": ["scripts/content.js"],
+        "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*"
+            ]
+        }
+    ]
+}
