@@ -67,3 +67,12 @@ setTimeout(() => {
 // Now you hand this specific, data-reading function to the guard
 const observer = new MutationObserver(yorObserverCallback);
 observer.observe(document.body, { childList: true, subtree: true });
+
+document.addEventListener("click", event => {
+    const isClickInside = folderPopupInstance.contains(event.target);
+
+    if (!isClickInside){
+        folderPopupInstance.style.display = "none";
+    }
+
+})
