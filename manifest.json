@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "content_scripts": [
         {
-        "js": ["scripts/content.js"],
+        "js": ["scripts/boxPopup.js","scripts/content.js","scripts/icons.js"],
         "matches": [
         "https://x.com/*",
         "https://twitter.com/*"
