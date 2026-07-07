@@ -35,6 +35,10 @@ function insertFolderIcon(tweetBox) {
     // Safe relational insertion mapping
     myParentNode.insertBefore(containerClone, myReferenceNode);
     console.log("🌟 Custom icon successfully mounted adjacent to bookmark element!");
+    const addBtn = folderPopupInstance.querySelector("button");
+    addBtn.addEventListener("click", (event) => {
+        console.log("add button clicked");
+    })
 }
 // Keep your exact insertFolderIcon function up here...
 
@@ -68,6 +72,7 @@ setTimeout(() => {
 const observer = new MutationObserver(yorObserverCallback);
 observer.observe(document.body, { childList: true, subtree: true });
 
+// So the folder exists once pressed
 document.addEventListener("click", event => {
     const isClickInside = folderPopupInstance.contains(event.target);
 
