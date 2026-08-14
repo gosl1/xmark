@@ -35,10 +35,7 @@ function insertFolderIcon(tweetBox) {
     // Safe relational insertion mapping
     myParentNode.insertBefore(containerClone, myReferenceNode);
     console.log("🌟 Custom icon successfully mounted adjacent to bookmark element!");
-    const addBtn = folderPopupInstance.querySelector("button");
-    addBtn.addEventListener("click", (event) => {
-        console.log("add button clicked");
-    })
+
 }
 // Keep your exact insertFolderIcon function up here...
 
@@ -80,4 +77,9 @@ document.addEventListener("click", event => {
         folderPopupInstance.style.display = "none";
     }
 
+})
+
+const addBtn = folderPopupInstance.querySelector("button");
+addBtn.addEventListener("click", (event) => {
+    console.log("add button clicked");
 })
