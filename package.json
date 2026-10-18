@@ -1,6 +1,6 @@
 {
-  "name": "wxt-starter",
-  "description": "manifest.json description",
+  "name": "xmark",
+  "description": "Browser extension for organizing X bookmarks into folders",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "vite": "^8.1.5",
-    "web-ext": "^10.5.0",
-    "wxt": "^0.21.3"
+    "web-ext": "^5.1.0",
+    "wxt": "^0.20.27"
   }
 }

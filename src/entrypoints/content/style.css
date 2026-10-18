@@ -1,0 +1,371 @@
+/* ---------------------------------------------------------------------------
+   Tokens. theme.ts sets data-xmark-theme on <html> from X's own body color and
+   overrides --xmark-accent with the user's chosen accent. Default = Lights out.
+   --------------------------------------------------------------------------- */
+:root {
+  --xmark-accent: rgb(29, 155, 240);
+  --xmark-bg: rgb(0, 0, 0);
+  --xmark-text: rgb(231, 233, 234);
+  --xmark-muted: rgb(113, 118, 123);
+  --xmark-border: rgb(47, 51, 54);
+  --xmark-hover: rgba(231, 233, 234, 0.1);
+  --xmark-danger: rgb(244, 33, 46);
+  --xmark-shadow: rgba(255, 255, 255, 0.2) 0 0 15px, rgba(255, 255, 255, 0.15) 0 0 3px 1px;
+  --xmark-font: TwitterChirp, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root[data-xmark-theme='dim'] {
+  --xmark-bg: rgb(21, 32, 43);
+  --xmark-text: rgb(247, 249, 249);
+  --xmark-muted: rgb(139, 152, 165);
+  --xmark-border: rgb(56, 68, 77);
+  --xmark-hover: rgba(247, 249, 249, 0.1);
+}
+
+:root[data-xmark-theme='light'] {
+  --xmark-bg: rgb(255, 255, 255);
+  --xmark-text: rgb(15, 20, 25);
+  --xmark-muted: rgb(83, 100, 113);
+  --xmark-border: rgb(239, 243, 244);
+  --xmark-hover: rgba(15, 20, 25, 0.1);
+  --xmark-shadow: rgba(101, 119, 134, 0.2) 0 0 15px, rgba(101, 119, 134, 0.15) 0 0 3px 1px;
+}
+
+[data-xmark][hidden],
+.xmark-form[hidden] {
+  display: none !important;
+}
+
+/* X's native timeline while a folder tab is selected. */
+[data-xmark-hidden='true'] {
+  display: none !important;
+}
+
+.xmark-icon {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------------------------------------------------------------------------
+   Folder button in the post action row (mirrors X's 34.75px round hit target)
+   --------------------------------------------------------------------------- */
+.xmark-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xmark-action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 34.75px;
+  height: 34.75px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  color: var(--xmark-muted);
+  background: transparent;
+  font-size: 18.75px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.xmark-action-button:hover,
+.xmark-action-button:focus-visible,
+.xmark-action-button[aria-expanded='true'] {
+  color: var(--xmark-accent);
+  background: color-mix(in srgb, var(--xmark-accent) 10%, transparent);
+  outline: none;
+}
+
+.xmark-action[data-saved] .xmark-action-button {
+  color: var(--xmark-accent);
+}
+
+.xmark-action[data-saved] .xmark-icon {
+  fill: currentColor;
+}
+
+/* ---------------------------------------------------------------------------
+   Popover (same shape as X's share / "more" menus)
+   --------------------------------------------------------------------------- */
+.xmark-popover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 300px;
+  max-width: calc(100vw - 16px);
+  max-height: min(420px, calc(100vh - 16px));
+  overflow: hidden;
+  color: var(--xmark-text);
+  background: var(--xmark-bg);
+  border-radius: 16px;
+  box-shadow: var(--xmark-shadow);
+  font: 15px/20px var(--xmark-font);
+}
+
+.xmark-menu {
+  width: auto;
+  min-width: 200px;
+}
+
+.xmark-popover-title {
+  padding: 12px 16px 4px;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.xmark-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.xmark-row:hover,
+.xmark-row:focus-visible {
+  background: var(--xmark-hover);
+  outline: none;
+}
+
+.xmark-row .xmark-icon {
+  font-size: 20px;
+}
+
+.xmark-row-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xmark-row-count {
+  color: var(--xmark-muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.xmark-row-check {
+  display: flex;
+  width: 20px;
+  color: var(--xmark-accent);
+}
+
+.xmark-row-danger {
+  color: var(--xmark-danger);
+}
+
+.xmark-list {
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+
+.xmark-form {
+  display: flex;
+  gap: 8px;
+  padding: 4px 16px 8px;
+}
+
+.xmark-form input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 8px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--xmark-border);
+  border-radius: 4px;
+  font: inherit;
+  outline: none;
+}
+
+.xmark-form input:focus {
+  border-color: var(--xmark-accent);
+  box-shadow: 0 0 0 1px var(--xmark-accent);
+}
+
+.xmark-form button {
+  height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 9999px;
+  color: #fff;
+  background: var(--xmark-accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.xmark-form button:hover {
+  filter: brightness(0.9);
+}
+
+.xmark-status {
+  padding: 0 16px;
+  color: var(--xmark-muted);
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.xmark-status:not(:empty) {
+  padding-bottom: 8px;
+}
+
+.xmark-status[data-error='true'] {
+  color: var(--xmark-danger);
+}
+
+.xmark-hint {
+  padding: 12px 16px 16px;
+  color: var(--xmark-muted);
+  font-size: 13px;
+}
+
+/* ---------------------------------------------------------------------------
+   Folder tabs (modeled on X's profile tab bar)
+   --------------------------------------------------------------------------- */
+.xmark-bar {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--xmark-border);
+  scrollbar-width: none;
+}
+
+.xmark-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.xmark-tab {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 56px;
+  height: 53px;
+  margin: 0;
+  padding: 0 16px;
+  border: 0;
+  color: var(--xmark-muted);
+  background: transparent;
+  font: 500 15px/20px var(--xmark-font);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.xmark-tab:hover,
+.xmark-tab:focus-visible {
+  background: var(--xmark-hover);
+  outline: none;
+}
+
+.xmark-tab span {
+  position: relative;
+  display: block;
+  max-width: 160px;
+  height: 53px;
+  overflow: hidden;
+  line-height: 53px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xmark-tab[aria-selected='true'] {
+  color: var(--xmark-text);
+  font-weight: 700;
+}
+
+.xmark-tab[aria-selected='true'] span::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--xmark-accent);
+}
+
+.xmark-tab-add {
+  flex: 0 0 auto;
+  font-size: 20px;
+}
+
+/* ---------------------------------------------------------------------------
+   Snapshot list
+   --------------------------------------------------------------------------- */
+.xmark-cell {
+  border-bottom: 1px solid var(--xmark-border);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.xmark-cell:hover {
+  background: color-mix(in srgb, var(--xmark-text) 3%, transparent);
+}
+
+.xmark-sentinel {
+  height: 1px;
+}
+
+.xmark-empty {
+  padding: 32px;
+  text-align: center;
+}
+
+.xmark-empty h2 {
+  margin: 0 0 8px;
+  color: var(--xmark-text);
+  font: 800 31px/36px var(--xmark-font);
+}
+
+.xmark-empty p {
+  max-width: 340px;
+  margin: 0 auto;
+  color: var(--xmark-muted);
+  font: 15px/20px var(--xmark-font);
+}
+
+.xmark-fallback {
+  padding: 12px 16px;
+  color: var(--xmark-text);
+  font: 15px/20px var(--xmark-font);
+}
+
+.xmark-fallback p {
+  margin: 0 0 4px;
+  overflow-wrap: anywhere;
+}
+
+.xmark-fallback span {
+  color: var(--xmark-muted);
+  font-size: 13px;
+}

@@ -1,0 +1,217 @@
+/* Popup palette follows the OS theme and reuses X's colors (Default / Lights out). */
+:root {
+  color-scheme: light dark;
+  --bg: rgb(255, 255, 255);
+  --text: rgb(15, 20, 25);
+  --muted: rgb(83, 100, 113);
+  --border: rgb(239, 243, 244);
+  --hover: rgba(15, 20, 25, 0.1);
+  --accent: rgb(29, 155, 240);
+  --danger: rgb(244, 33, 46);
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: rgb(0, 0, 0);
+    --text: rgb(231, 233, 234);
+    --muted: rgb(113, 118, 123);
+    --border: rgb(47, 51, 54);
+    --hover: rgba(231, 233, 234, 0.1);
+  }
+}
+
+body {
+  box-sizing: border-box;
+  width: 360px;
+  max-height: 560px;
+  margin: 0;
+  overflow-y: auto;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.xmark-icon {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+header {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.subtitle,
+.hint,
+.status {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.status[data-error='true'] {
+  color: var(--danger);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pill {
+  height: 32px;
+  padding: 0 16px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pill:hover {
+  background: var(--hover);
+}
+
+.hint {
+  padding: 16px;
+}
+
+.folder {
+  border-bottom: 1px solid var(--border);
+}
+
+.folder > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+}
+
+.folder > summary::-webkit-details-marker {
+  display: none;
+}
+
+.folder > summary:hover {
+  background: var(--hover);
+}
+
+.folder > summary > .xmark-icon {
+  font-size: 20px;
+}
+
+.folder-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.folder-count {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.rename-input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 28px;
+  padding: 0 8px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 700;
+  outline: none;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 9999px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  outline: none;
+}
+
+.icon-button[data-danger]:hover,
+.icon-button[data-armed] {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+
+.folder-body ul {
+  margin: 0;
+  padding: 0 0 8px;
+  list-style: none;
+}
+
+.folder-body li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.folder-body li:hover {
+  background: var(--hover);
+}
+
+.folder-body a {
+  display: -webkit-box;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.folder-body a:hover {
+  color: var(--accent);
+}
+
+.folder-body .hint {
+  padding: 0 16px 12px;
+}
